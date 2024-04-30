@@ -112,10 +112,10 @@ def update_classroom():
 # 使用 st.tabs 组织功能
 tab_functions = {
     "班级表": display_class_table,
-    "导入班级": import_classroom,
-    "添加班级": add_classroom,
-    "删除班级": delete_classroom,
-    "修改班级": update_classroom,
+    "导入": import_classroom,
+    "添加": add_classroom,
+    "删除": delete_classroom,
+    "更新": update_classroom,
 }
 
 tabs = st.tabs(list(tab_functions.keys()))
