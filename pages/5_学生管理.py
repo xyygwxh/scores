@@ -27,7 +27,9 @@ def get_grade_list(conn):
 
 
 def get_classrooms_by_grade(conn, grade):
-    cursor.execute("SELECT DISTINCT 班级 FROM student WHERE 年级=?", (grade,))
+    cursor.execute(
+        "SELECT DISTINCT 班级 FROM student WHERE 年级=? ORDER BY 班级", (grade,)
+    )
     return [i[0] for i in cursor.fetchall()]
 
 

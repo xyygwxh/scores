@@ -4,6 +4,26 @@ import sqlite3
 from sqlite3 import Error
 
 
+try:
+    conn = sqlite3.connect("school.db")
+except Error as e:
+    st.error(f"数据库连接错误: {e}")
+    exit()
+
+# 创建表
+cursor = conn.cursor()
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS classroom (
+         编号 INTEGER,
+         年级 INTEGER,
+         名称 INTEGER,
+         科目类型 TEXT,
+         层级 TEXT)"""
+)
+conn.commit()
+
+
 def get_grade_list(conn):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM grade")
@@ -14,13 +34,6 @@ def get_classrooms_by_grade(conn, grade):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM classroom WHERE 年级=?", (grade,))
     return [i[0] for i in cursor.fetchall()]
-
-
-try:
-    conn = sqlite3.connect("school.db")
-except Error as e:
-    st.error(f"数据库连接错误: {e}")
-    exit()
 
 
 # 主要功能定义
@@ -55,7 +68,7 @@ def add_classroom():
     else:
         if st.button("添加"):
             cursor.execute(
-                "INSERT INTO classroom (名称, 年级,编号, 科目类型, 层级) VALUES (?, ?, ?, ?, ?)",
+                "INSERT INTO classroom (名称, 年级, 编号, 科目类型, 层级) VALUES (?, ?, ?, ?, ?)",
                 (name, grade, id, subject, level),
             )
             conn.commit()
