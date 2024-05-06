@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import sqlite3
+import plotly.express as px
+
 
 st.title("学生成绩查询")
 
@@ -89,3 +91,19 @@ df = df[column_names]
 
 st.write("学生成绩")
 st.dataframe(df)
+
+# 使用 plotly 将 df 以折线图的形式展示
+fig = px.line(
+    df,
+    x="考试名称",
+    y=column_names[3:],
+    title="学生成绩",
+    labels={
+        "value": "成绩",
+        "variable": "科目",
+    },
+    template="plotly_white",  # 设置背景
+    markers=True,
+)
+
+st.plotly_chart(fig)
