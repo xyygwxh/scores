@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import sqlite3
 
+if not st.session_state["authentication_status"]:
+    st.switch_page("home.py")
+
 st.title("班级成绩查询")
 
 # 连接数据库
@@ -62,4 +65,4 @@ if type == "物理类":
     df = df[["班级", "姓名", "语文", "英语", "数学", "物理", "化学", "生物", "总分"]]
 else:
     df = df[["班级", "姓名", "语文", "英语", "数学", "历史", "政治", "地理", "总分"]]
-st.dataframe(df)
+st.dataframe(df, use_container_width=True)

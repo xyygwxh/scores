@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import sqlite3
 
+
 # 辅助函数
 def get_grade_list():
     conn = sqlite3.connect("school.db")
@@ -37,7 +38,11 @@ def display_students():
     conn.commit()
     sql = "SELECT * FROM student"
     df = pd.read_sql_query(sql, conn)
-    st.dataframe(df)
+    st.dataframe(df, use_container_width=True)
+
+    # 将 df 导出 excel 文件
+    if st.button("导出"):
+        df.to_excel("student.xlsx", index=False)
 
 
 def import_students():

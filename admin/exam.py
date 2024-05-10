@@ -4,7 +4,6 @@ import sqlite3
 import time
 
 
-
 def get_grade_list():
     conn = sqlite3.connect("school.db")
     cursor = conn.cursor()
@@ -78,16 +77,17 @@ def display_exam_table():
     data = cursor.fetchall()
     if data:
         df = pd.DataFrame(data, columns=["编号", "名称", "年级"])
-        st.dataframe(df)
+        st.dataframe(df, use_container_width=True)
     else:
         st.warning("考试表为空")
+
 
 def add_exam():
     st.subheader("添加考试")
     date_str = st.date_input("考试日期").strftime("%Y-%m-%d")
     name = st.text_input("考试名称")
     grade = st.selectbox("年级", get_grade_list())
-    
+
     # 导入学生成绩
     file1 = st.file_uploader("上传物理类学生成绩", type=["xlsx"])
     file2 = st.file_uploader("上传历史类学生成绩", type=["xlsx"])
@@ -111,6 +111,7 @@ def add_exam():
             st.success("导入成功")
             time.sleep(2)
             st.experimental_rerun()
+
 
 def delete_exam():
     st.subheader("删除考试")
@@ -153,6 +154,7 @@ def delete_exam():
             st.warning("考试表为空")
         st.experimental_rerun()
 
+
 def exam_manage():
     tabs = st.tabs(["考试表", "添加考试", "删除考试"])
     with tabs[0]:
@@ -161,4 +163,3 @@ def exam_manage():
         add_exam()
     with tabs[2]:
         delete_exam()
-

@@ -1,0 +1,20 @@
+credentials:
+  usernames:
+    admin:
+      email: xyygwxh@163.com
+      failed_login_attempts: 0 # Will be managed automatically
+      logged_in: False # Will be managed automatically
+      name: 管理员
+      password: xyygwxh001 # Will be hashed automatically
+    xyyg:
+      email: 724604704@qq.com
+      failed_login_attempts: 0 # Will be managed automatically
+      logged_in: False # Will be managed automatically
+      name: 教师
+      password: xyyg666 # Will be hashed automatically
+cookie:
+  expiry_days: 30
+  key: some_signature_key # Must be string
+  name: some_cookie_name
+
+  

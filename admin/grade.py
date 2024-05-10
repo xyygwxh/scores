@@ -20,7 +20,7 @@ def show_grade_table():
     grade_list = cursor.execute("SELECT * FROM grade").fetchall()
     if grade_list:
         df = pd.DataFrame(grade_list, columns=["编号", "名称"])
-        st.dataframe(df)
+        st.dataframe(df, use_container_width=True)
     else:
         st.info("暂无年级")
 

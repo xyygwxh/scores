@@ -3,6 +3,8 @@ import pandas as pd
 import sqlite3
 import plotly.express as px
 
+if not st.session_state["authentication_status"]:
+    st.switch_page("home.py")
 
 st.title("学生成绩查询")
 
@@ -90,7 +92,7 @@ else:
 df = df[column_names]
 
 st.write("学生成绩")
-st.dataframe(df)
+st.dataframe(df, use_container_width=True)
 
 # 使用 plotly 将 df 以折线图的形式展示
 fig = px.line(
@@ -104,6 +106,9 @@ fig = px.line(
     },
     template="plotly_white",  # 设置背景
     markers=True,
+    # 适应屏幕
+    width=450,
+    height=450,
 )
 
 st.plotly_chart(fig)
