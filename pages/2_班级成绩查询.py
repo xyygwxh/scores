@@ -60,9 +60,10 @@ column_names = [i[0] for i in cursor.description]
 
 # 创建DataFrame
 df = pd.DataFrame(result, columns=column_names)
+df.set_index("姓名", inplace=True)
 
 if type == "物理类":
-    df = df[["班级", "姓名", "语文", "英语", "数学", "物理", "化学", "生物", "总分"]]
+    df = df[["语文", "英语", "数学", "物理", "化学", "生物", "总分"]]
 else:
-    df = df[["班级", "姓名", "语文", "英语", "数学", "历史", "政治", "地理", "总分"]]
+    df = df[["语文", "英语", "数学", "历史", "政治", "地理", "总分"]]
 st.dataframe(df, use_container_width=True)

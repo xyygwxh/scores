@@ -5,11 +5,7 @@ from yaml.loader import SafeLoader
 from admin.admin import admin_manage
 
 # 设置页面配置
-st.set_page_config(
-    page_title="学生成绩查询系统",
-    page_icon=":books:",
-    layout="wide",
-)
+st.set_page_config(page_title="scores", page_icon=":books:", layout="wide")
 
 
 def index():
@@ -40,9 +36,7 @@ elif st.session_state["authentication_status"] is None:
 
 
 if st.session_state["username"] == "admin":
-    print(st.session_state)
     admin_manage()
 elif st.session_state["username"] == "xyyg":
-    print(st.session_state)
     index()
     authenticator.logout("退出", "main", key="main")

@@ -91,13 +91,16 @@ else:
 
 df = df[column_names]
 
+# 将考试名称设为索引
+df.set_index("考试名称", inplace=True)
+
 st.write("学生成绩")
 st.dataframe(df, use_container_width=True)
 
 # 使用 plotly 将 df 以折线图的形式展示
 fig = px.line(
     df,
-    x="考试名称",
+    x="考试编号",
     y=column_names[3:],
     title="学生成绩",
     labels={
