@@ -11,8 +11,16 @@ def admin_manage():
     with st.sidebar:
         selected = option_menu(
             "管理",
-            ["年级管理", "班级管理", "学生管理", "考试管理"],
-            icons=["house", "gear", "gear", "gear"],
+            [
+                "年级管理",
+                "班级管理",
+                "学生管理",
+                "考试管理",
+                "用户管理",
+                "角色管理",
+                "权限管理",
+            ],
+            icons=["gear", "gear", "gear", "gear", "gear", "gear", "gear"],
             menu_icon="cast",
             default_index=1,
             key="sidebar_selection",
@@ -25,3 +33,9 @@ def admin_manage():
         student_manage()
     elif selected == "考试管理":
         exam_manage()
+    elif selected == "用户管理":
+        pass
+    elif selected == "角色管理":
+        pass
+    elif selected == "权限管理":
+        pass
